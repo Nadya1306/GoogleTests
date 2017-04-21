@@ -50,7 +50,7 @@ public class LoginGmailTests  {
     @Test
     public void EmptyLogin(){
 
-        loginPage.enterUserName("  ");
+        loginPage.enterUserName(" ");
 
         loginPage.assertErrorMessageForEmptyUserNameFieldShown();
     }
