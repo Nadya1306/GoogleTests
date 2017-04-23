@@ -32,11 +32,12 @@ public class LoginGmailTests  {
 
     @After
     public void quitOut() {
-        app.close();
+
+        //app.close();
     }
 
     @Test
-    public void LogInLogOutGmail(){
+    public void verifyAutorisationGmail(){
 
         loginPage.enterUserName("testnm1306@gmail.com");
 
@@ -48,7 +49,7 @@ public class LoginGmailTests  {
     }
 
     @Test
-    public void EmptyLogin(){
+    public void verifyErrorMessageForEmptyUserNameField(){
 
         loginPage.enterUserName(" ");
 
@@ -56,7 +57,7 @@ public class LoginGmailTests  {
     }
 
     @Test
-    public void EmptyPassword(){
+    public void verifyErrorMessageForEmptyPasswordField(){
 
         loginPage.enterUserName("TestNM1306@gmail.com");
 
@@ -66,7 +67,7 @@ public class LoginGmailTests  {
     }
 
     @Test
-    public void WrongLogin(){
+    public void verifyErrorMessageForNotRecognizedUserNameField(){
 
         loginPage.enterUserName("hghbhhbhb@njnj.com");
 
@@ -74,17 +75,10 @@ public class LoginGmailTests  {
     }
 
     @Test
-    public void LinkLearnMore() {
-
-        String parentHandle = driver.getWindowHandle();
+    public void transitionToLinkLearnMore() {
 
         loginPage.clickLinkLearnMore();
 
-        for(String childHandle : driver.getWindowHandles()) {
-            if (!childHandle.equals(parentHandle)) {
-                driver.switchTo().window(childHandle);
-            }
-        }
     }
 
 

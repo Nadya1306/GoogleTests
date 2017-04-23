@@ -25,7 +25,10 @@ public class GmailApplication {
     public LogOutPage openLogoutPage(){
 
         return new LogOutPage(driver);
+
     }
+
+
 
     public void open(){
 

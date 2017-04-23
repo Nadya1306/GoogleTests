@@ -3,7 +3,6 @@ package GmailApplication.GmailPageObjcts;
 
 import Shared.BasePageObject;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,7 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class LoginPage extends BasePageObject {
 
     @FindBy(id = "Email")
-    private WebElement mailField;
+    private WebElement userNameField;
 
     @FindBy(id = "next")
     private WebElement logInButton;
@@ -33,18 +32,21 @@ public class LoginPage extends BasePageObject {
     @FindBy(css = ".glif-promo a")
     private WebElement linkLearnMore;
 
+    String parentHandle = driver.getWindowHandle();
+
 
     public LoginPage(WebDriver driver) {
 
         super(driver);
 
         PageFactory.initElements(driver, this);
+
     }
 
 
     public void enterUserName(String username) {
 
-        mailField.sendKeys(username);
+        userNameField.sendKeys(username);
 
         logInButton.click();
     }
@@ -56,10 +58,21 @@ public class LoginPage extends BasePageObject {
         signInButton.click();
     }
 
-    public void clickLinkLearnMore(){
+    public LearnMorePage clickLinkLearnMore(){
 
         linkLearnMore.click();
+
+        this.driver.getWindowHandle();
+
+        for (String childHandle : driver.getWindowHandles()) {
+            if (!childHandle.equals(parentHandle)) {
+                driver.switchTo().window(childHandle);
+            }
+        }
+
+        return new LearnMorePage(driver);
     }
+
 
     public void assertErrorMessageForUserNameFieldIsShown() {
         super.waitForElement(ExpectedConditions.visibilityOf(errorMessageForUserNameField), 10);
