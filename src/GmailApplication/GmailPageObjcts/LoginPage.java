@@ -11,36 +11,41 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePageObject {
 
-    @FindBy(id = "Email")
+    @FindBy(id = "identifierId")
     private WebElement userNameField;
 
-    @FindBy(id = "next")
+    @FindBy(id = "identifierNext")
     private WebElement logInButton;
 
-    @FindBy(id = "Passwd")
+    @FindBy(name = "password")
     private WebElement passwordField;
 
-    @FindBy(id = "signIn")
+    @FindBy(id = "passwordNext")
     private WebElement signInButton;
 
-    @FindBy(id = "errormsg_0_Email")
+    @FindBy(css = ".dEOOab")
     private  WebElement errorMessageForUserNameField;
 
     @FindBy(id = "errormsg_0_Passwd")
     private WebElement errorMessageForPasswordField;
 
-    @FindBy(css = ".glif-promo a")
+    @FindBy(css = ".aObNaf a")
     private WebElement linkLearnMore;
 
-    String parentHandle = driver.getWindowHandle();
+    @FindBy(css = ".IMH1vc.lUHSR")
+    private  WebElement moreOptionsLink;
 
+    @FindBy(xpath = "//content[contains(@class, 'z80M1') and .//div[contains(., 'Forgot email?')]]")
+    private WebElement forgotEmailLink;
+
+    @FindBy(id = "McfNlf")
+    private WebElement secureOkButton;
 
     public LoginPage(WebDriver driver) {
 
         super(driver);
 
         PageFactory.initElements(driver, this);
-
     }
 
 
@@ -53,6 +58,8 @@ public class LoginPage extends BasePageObject {
 
     public void enterUserPassword(String password) {
 
+        super.waitForElement(ExpectedConditions.visibilityOf(passwordField),ConstantForWait.waitConstantOfSeconds());
+
         passwordField.sendKeys(password);
 
         signInButton.click();
@@ -60,9 +67,9 @@ public class LoginPage extends BasePageObject {
 
     public LearnMorePage clickLinkLearnMore(){
 
-        linkLearnMore.click();
+        String parentHandle = this.driver.getWindowHandle();
 
-        this.driver.getWindowHandle();
+        linkLearnMore.click();
 
         for (String childHandle : driver.getWindowHandles()) {
             if (!childHandle.equals(parentHandle)) {
@@ -73,9 +80,27 @@ public class LoginPage extends BasePageObject {
         return new LearnMorePage(driver);
     }
 
+    public void  clickMoreOptionsLink(){
+
+        moreOptionsLink.click();
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ForgotEmailPage clickForgotEmailLink(){
+
+        forgotEmailLink.click();
+
+        return  new ForgotEmailPage(driver);
+    }
+
 
     public void assertErrorMessageForUserNameFieldIsShown() {
-        super.waitForElement(ExpectedConditions.visibilityOf(errorMessageForUserNameField), 10);
+        super.waitForElement(ExpectedConditions.visibilityOf(errorMessageForUserNameField), ConstantForWait.waitConstantOfSeconds());
 
         Assert.assertTrue("Error message for user name field on login screen is not shown.", errorMessageForUserNameField.isDisplayed());
     }
@@ -84,14 +109,14 @@ public class LoginPage extends BasePageObject {
 
         assertErrorMessageForUserNameFieldIsShown();
 
-        Assert.assertTrue(errorMessageForUserNameField.getText().contains("Enter an email or phone number. Молодец !!! ;)"));
+        Assert.assertTrue(errorMessageForUserNameField.getText().contains("Enter an email or phone number"));
     }
 
     public void assertErrorMessageForNotRecognizedUserNameFieldShown(){
 
         assertErrorMessageForUserNameFieldIsShown();
 
-        Assert.assertTrue(errorMessageForUserNameField.getText().contains("Sorry, Google doesn't recognize that email."));
+        Assert.assertTrue(errorMessageForUserNameField.getText().contains("Couldn't find your Google Account"));
     }
 
     public void assertErrorMessageForPasswordFieldShown(){

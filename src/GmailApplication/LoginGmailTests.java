@@ -1,5 +1,6 @@
 package GmailApplication;
 
+import GmailApplication.GmailPageObjcts.LearnMorePage;
 import GmailApplication.GmailPageObjcts.LogOutPage;
 import GmailApplication.GmailPageObjcts.LoginPage;
 import org.junit.After;
@@ -33,7 +34,7 @@ public class LoginGmailTests  {
     @After
     public void quitOut() {
 
-        //app.close();
+        app.close();
     }
 
     @Test
@@ -46,6 +47,7 @@ public class LoginGmailTests  {
         LogOutPage logOutPage = app.openLogoutPage();
 
         logOutPage.logout();
+
     }
 
     @Test
@@ -75,13 +77,33 @@ public class LoginGmailTests  {
     }
 
     @Test
-    public void transitionToLinkLearnMore() {
+    public void openlinklearnmore() {
 
         loginPage.clickLinkLearnMore();
 
     }
 
+    @Test
+    public void openRemoveAccountDropdownList(){
 
+        LearnMorePage learnMorePage = loginPage.clickLinkLearnMore();
+
+        learnMorePage.openRemoveAccountDropdownList();
+
+        learnMorePage.assertRemoveAccountDropdownListStatment();
+
+        learnMorePage.assertRemoveImageIsDisplayd();
+
+    }
+
+    @Test
+    public void openFacebookPage(){
+
+        LearnMorePage learnMorePage = loginPage.clickLinkLearnMore();
+
+        learnMorePage.openFacebookLoginPage();
+
+    }
 }
 
 
