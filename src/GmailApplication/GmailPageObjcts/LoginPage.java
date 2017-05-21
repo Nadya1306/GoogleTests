@@ -23,16 +23,16 @@ public class LoginPage extends BasePageObject {
     @FindBy(id = "passwordNext")
     private WebElement signInButton;
 
-    @FindBy(css = ".dEOOab")
+    @FindBy(xpath = "descendant::div[@class='dEOOab RxsGPe']")
     private  WebElement errorMessageForUserNameField;
 
     @FindBy(id = "errormsg_0_Passwd")
     private WebElement errorMessageForPasswordField;
 
-    @FindBy(css = ".aObNaf a")
+    @FindBy(xpath = ".//*[@id ='glifPromo']/div[1]/p[1]/a")
     private WebElement linkLearnMore;
 
-    @FindBy(css = ".IMH1vc.lUHSR")
+    @FindBy(xpath = ".//*[@class ='fImV7']/div[2]")
     private  WebElement moreOptionsLink;
 
     @FindBy(xpath = "//content[contains(@class, 'z80M1') and .//div[contains(., 'Forgot email?')]]")
@@ -40,6 +40,9 @@ public class LoginPage extends BasePageObject {
 
     @FindBy(id = "McfNlf")
     private WebElement secureOkButton;
+
+    @FindBy(xpath =".//*[@id='lang-chooser']/div[1]/div[2]/div")
+    private WebElement languageList;
 
     public LoginPage(WebDriver driver) {
 
@@ -96,6 +99,20 @@ public class LoginPage extends BasePageObject {
         forgotEmailLink.click();
 
         return  new ForgotEmailPage(driver);
+    }
+
+    public void clickLanguageList(){
+
+        super.waitForElement(ExpectedConditions.visibilityOf(languageList),ConstantForWait.waitConstantOfSeconds());
+
+        languageList.click();
+    }
+
+    public void clickOkSecureButton(){
+
+        super.waitForElement(ExpectedConditions.visibilityOf(secureOkButton),ConstantForWait.waitConstantOfSeconds());
+
+        secureOkButton.click();
     }
 
 
