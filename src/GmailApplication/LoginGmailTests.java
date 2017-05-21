@@ -34,7 +34,7 @@ public class LoginGmailTests  {
     @After
     public void quitOut() {
 
-        app.close();
+       // app.close();
     }
 
     @Test
@@ -103,6 +103,20 @@ public class LoginGmailTests  {
 
         learnMorePage.openFacebookLoginPage();
 
+    }
+
+    @Test
+    public void changeLanguage(){
+
+        loginPage.clickLanguageList();
+        // a change
+
+    }
+
+    @Test
+    public void clickSecureOkButton(){
+
+        loginPage.clickOkSecureButton();
     }
 }
 
