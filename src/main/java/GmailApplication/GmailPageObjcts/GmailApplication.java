@@ -1,11 +1,6 @@
-package GmailApplication;
+package GmailApplication.GmailPageObjcts;
 
-import GmailApplication.GmailPageObjcts.LogOutPage;
-import GmailApplication.GmailPageObjcts.LoginPage;
-import Shared.BasePageObject;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
-
 
 public class GmailApplication {
 

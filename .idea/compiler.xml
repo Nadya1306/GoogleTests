@@ -9,8 +9,5 @@
         <module name="GoogleTests" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="GoogleTests" target="1.5" />
-    </bytecodeTargetLevel>
   </component>
 </project>

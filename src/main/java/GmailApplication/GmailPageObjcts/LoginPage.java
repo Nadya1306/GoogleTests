@@ -1,6 +1,5 @@
 package GmailApplication.GmailPageObjcts;
 
-
 import Shared.BasePageObject;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;

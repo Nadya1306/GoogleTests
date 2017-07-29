@@ -1,8 +1,7 @@
-package GmailApplication;
-
 import GmailApplication.GmailPageObjcts.LearnMorePage;
 import GmailApplication.GmailPageObjcts.LogOutPage;
 import GmailApplication.GmailPageObjcts.LoginPage;
+import GmailApplication.GmailPageObjcts.GmailApplication;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

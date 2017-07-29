@@ -14,6 +14,7 @@ public class BasePageObject {
     public BasePageObject(WebDriver driver) {
 
         if (driver == null) {
+
             throw new NullPointerException("driver parameter should be provided.");
         }
 
@@ -21,13 +22,10 @@ public class BasePageObject {
     }
 
     protected <T> void waitForElement(ExpectedCondition<T> isTrue, long timeOutInSeconds){
+
         WebDriverWait wait = new WebDriverWait(this.driver, timeOutInSeconds);
+
         wait.until(isTrue);
     }
-
-   /* protected <V> void wait(Function<? super WebDriver, V> isTrue, long timeOutInSeconds){
-        WebDriverWait wait = new WebDriverWait(this.driver, timeOutInSeconds);
-        wait.until(isTrue);
-        //ExpectedCondition<WebElement>*/
 }
 

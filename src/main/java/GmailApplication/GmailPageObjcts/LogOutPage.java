@@ -14,15 +14,13 @@ public class LogOutPage extends BasePageObject {
         super(driver);
 
         PageFactory.initElements(driver, this);
-
     }
 
-    @FindBy(css = ".gb_9a")
+    @FindBy(xpath = ".//*[@class='gb_8a gbii']")
     WebElement accountButton;
 
     @FindBy(id = "gb_71")
     WebElement signOutButton;
-
 
     public void logout() {
 
